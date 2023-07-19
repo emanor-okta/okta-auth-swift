@@ -1,0 +1,24 @@
+PODS:
+  - OktaAuthFoundation (1.4.1)
+  - OktaAuthSdk (2.4.3)
+  - OktaOAuth2 (1.4.1):
+    - OktaAuthFoundation (= 1.4.1)
+
+DEPENDENCIES:
+  - OktaAuthSdk
+  - OktaOAuth2 (= 1.4.1)
+
+SPEC REPOS:
+  trunk:
+    - OktaAuthFoundation
+    - OktaAuthSdk
+    - OktaOAuth2
+
+SPEC CHECKSUMS:
+  OktaAuthFoundation: 857968bad68931f7aecfcf7819a6cc6c93a2c138
+  OktaAuthSdk: f00a17beb4e5c76a37c2c0ebc9e6b6999b829523
+  OktaOAuth2: 75077f46b0779a83dd093cfc07ca733c0daa9679
+
+PODFILE CHECKSUM: bd7a00e728d5cf90f07094339f897fe927ad3978
+
+COCOAPODS: 1.11.2

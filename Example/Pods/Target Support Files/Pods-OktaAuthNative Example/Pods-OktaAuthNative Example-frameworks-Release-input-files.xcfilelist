@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-OktaAuthNative Example/Pods-OktaAuthNative Example-frameworks.sh
+${BUILT_PRODUCTS_DIR}/OktaAuthFoundation/AuthFoundation.framework
+${BUILT_PRODUCTS_DIR}/OktaAuthSdk/OktaAuthSdk.framework
+${BUILT_PRODUCTS_DIR}/OktaOAuth2/OktaOAuth2.framework

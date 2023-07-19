@@ -11,9 +11,10 @@
  */
 
 import UIKit
-import OktaAuthNative
+import OktaAuthSdk
+import OktaOAuth2
 
-let oktaDomain = "<#yourOktaDomain#>"
+let oktaDomain = "{domain}.okta.com"
 class ViewController: UIViewController {
 
     var currentStatus: OktaAuthStatus?
@@ -220,10 +221,29 @@ class ViewController: UIViewController {
 
     func handleSuccessStatus(sessionToken: String) {
         activityIndicator.stopAnimating()
-
-        let alert = UIAlertController(title: "Hooray!", message: "We are logged in", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+ 
+        let flow: SessionTokenFlow
+        do {
+            flow = try SessionTokenFlow()
+        } catch {
+            //self.show(error)
+            print(error)
+            return
+        }
+        print(flow)
+        Task {
+            do {
+                
+                let token = try await flow.start(with: sessionToken)
+                print("token \(token.idToken.debugDescription)")
+                try Credential.store(token)
+                let alert = UIAlertController(title: "Token Stored " + (token.idToken?.name!)!, message: "name: \((token.idToken?.name)!) Issuer: \((token.idToken?.issuer)!) Subject: \((token.idToken?.subject)!)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            } catch {
+                print("The Error is: \(error)")
+            }
+        }
 
         self.loginButton.isEnabled = false
         self.cancelButton.isEnabled = false
